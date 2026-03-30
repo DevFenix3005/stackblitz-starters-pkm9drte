@@ -1,7 +1,6 @@
 /* Add application styles & imports to this file! */
 html,
 body {
-  background-color: whitesmoke;
   height: 100%; /* Ensure full height for html and body */
   margin: 0;
 }
