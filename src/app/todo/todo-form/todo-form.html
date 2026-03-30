@@ -1,0 +1,14 @@
+<form [formGroup]="todoForm" (ngSubmit)="addTodo($event)">
+  <fieldset>
+    <label for="title">Title</label>
+    <input
+      id="title"
+      formControlName="title"
+      placeholder="Title"
+      autocomplete="given-title"
+      aria-describedby="todo-helper"
+    />
+    <small id="todo-helper">Put a title for this todo</small>
+  </fieldset>
+  <button type="submit">Add Todo</button>
+</form>
