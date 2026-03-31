@@ -5,16 +5,6 @@ body {
   margin: 0;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Minimum height of 100% of the viewport height */
-}
-
-main {
-  flex: 1 0 auto; /* This makes the main content grow to fill available space */
-}
-
 body > footer {
   position: sticky;
   top: 100vh;

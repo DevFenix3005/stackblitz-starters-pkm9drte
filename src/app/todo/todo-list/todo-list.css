@@ -1,16 +1,8 @@
-.list-container {
-  list-style-type: disc; /* Set the desired marker type on the parent */
-  padding-left: 20px; /* Add padding to ensure markers are visible */
+article{
+    height: 100%;
 }
 
-.list-item {
-  display: flex; /* Make each list item a flex container */
-  align-items: center; /* Vertically center the content and marker */
-  gap: 10px; /* Add space between the marker and content */
-}
-
-li::marker {
-  color: blue; /* Change marker color */
-  font-size: 1.2em; /* Change marker size */
-  content: '⭐ '; /* Use custom content */
+article > footer {
+    position: sticky;
+    top: 100vh;
 }

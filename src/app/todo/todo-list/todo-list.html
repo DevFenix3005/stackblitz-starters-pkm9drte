@@ -1,9 +1,21 @@
-@if(todos.length <= 0){
-<h2>Not todos in the list</h2>
-} @else{ @for (item of todos; track item.id) {
-<ul class="list-container">
-  <li class="list-item">
-    <span>{{ item.title }}</span>
-  </li>
-</ul>
-} }
+<article>
+  @if(todos.length <= 0){
+    <h2>Not todos in the list</h2>
+  } 
+  @else{ 
+    <div role="group">
+      <button>All</button>
+      <button class="secondary">Complete</button>
+      <button class="contrast">Pending</button>
+    </div>
+    <hr/>
+    @for (item of todos; track item.id) {
+    <ul>
+      <li>
+        <span>{{ item.title }}</span>
+      </li>
+    </ul>
+    } 
+    <footer>{{ todos.length }} todos</footer>
+  }
+</article>
