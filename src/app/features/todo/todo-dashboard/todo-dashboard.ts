@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Todo } from '../../shared/todo';
+import { Todo } from '../../../shared/models/todo';
 import { TodoForm } from '../todo-form/todo-form';
 import { TodoList } from '../todo-list/todo-list';
 import { TodoMock } from '../services/todo-mock';

@@ -5,7 +5,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { Todo } from '../../shared/todo';
+import { Todo } from '../../../shared/models/todo';
 
 @Component({
   selector: 'app-todo-form',

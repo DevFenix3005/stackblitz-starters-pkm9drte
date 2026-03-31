@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { Todo } from '../../shared/todo';
+import { Todo } from '../../../shared/models/todo';
+
 
 @Injectable({
   providedIn: 'root',

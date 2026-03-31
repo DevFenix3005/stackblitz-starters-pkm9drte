@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TodoDashboard } from './todo/todo-dashboard/todo-dashboard';
+import { TodoDashboard } from './features/todo/todo-dashboard/todo-dashboard';
 
 export const routes: Routes = [
   {

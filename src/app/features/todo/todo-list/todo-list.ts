@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { Todo } from '../../shared/todo';
+import { Todo } from '../../../shared/models/todo';
 
 const isOpenClass = "modal-is-open";
 const openingClass = "modal-is-opening";

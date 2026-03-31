@@ -11,8 +11,7 @@ li.todo-item {
     cursor: pointer;
 }
 
-li.todo-item:hover{
+li.todo-item:hover {
     background-color: var(--pico-primary-hover);
     color: black;
 }
-
