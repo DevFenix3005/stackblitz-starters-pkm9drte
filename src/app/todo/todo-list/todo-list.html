@@ -1,21 +1,39 @@
 <article>
-  @if(todos.length <= 0){
-    <h2>Not todos in the list</h2>
-  } 
-  @else{ 
+  @if(todos.length <= 0){ <h2>Not todos in the list</h2>
+    }
+    @else{
     <div role="group">
       <button>All</button>
       <button class="secondary">Complete</button>
       <button class="contrast">Pending</button>
     </div>
-    <hr/>
+    <hr />
     @for (item of todos; track item.id) {
     <ul>
-      <li>
+      <li class="todo-item" (click)="changeStatus(item)">
         <span>{{ item.title }}</span>
       </li>
     </ul>
-    } 
+    }
     <footer>{{ todos.length }} todos</footer>
-  }
+    }
 </article>
+
+<dialog #dialog>
+  @if(todoSelected){
+  <article>
+    <h2>{{ todoSelected.title }}</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a libero id tellus luctus pellentesque.
+      Maecenas maximus, nunc sed vehicula.
+    </p>
+    <footer>
+      <button class="secondary" (click)="closeDialog()">
+        Cancel
+      </button>
+      <button>Deleted</button>
+      <button>{{ todoSelected.completed ? "Return Todo!" : "Done!" }}</button>
+    </footer>
+  </article>
+  }
+</dialog>

@@ -1,8 +1,18 @@
-article{
+article {
     height: 100%;
 }
 
-article > footer {
+article>footer {
     position: sticky;
     top: 100vh;
 }
+
+li.todo-item {
+    cursor: pointer;
+}
+
+li.todo-item:hover{
+    background-color: var(--pico-primary-hover);
+    color: black;
+}
+
