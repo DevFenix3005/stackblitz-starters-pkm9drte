@@ -1,5 +1,5 @@
-import { Component, Input, ViewChild, ElementRef, inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Input, ViewChild, ElementRef, inject, Output, EventEmitter } from '@angular/core';
+import { DOCUMENT, NgClass } from '@angular/common';
 import { Todo } from '../../../shared/models/todo';
 
 const isOpenClass = "modal-is-open";
@@ -11,12 +11,16 @@ type TodoNullable = Todo | null;
 
 @Component({
   selector: 'app-todo-list',
-  imports: [],
+  imports: [NgClass],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
 export class TodoList {
   @Input() todos!: Todo[];
+  @Output() toggleTodo: EventEmitter<number> = new EventEmitter();
+  @Output() deleteTodo: EventEmitter<number> = new EventEmitter();
+  @Output() filterTodo: EventEmitter<string> = new EventEmitter();
+
   @ViewChild("dialog") dialog!: ElementRef<HTMLDialogElement>;
   private document: Document = inject(DOCUMENT);
   protected todoSelected: TodoNullable = null;
@@ -40,6 +44,24 @@ export class TodoList {
       this.dialog.nativeElement.close();
       this.todoSelected = null;
     }, animationDuration);
+  }
+
+
+  toggleTodoHandler(): void {
+    if (this.todoSelected) {
+      this.toggleTodo.emit(this.todoSelected.id);
+      this.closeDialog();
+    }
+  }
+  deleteTodoHandler(): void {
+    if (this.todoSelected) {
+      this.deleteTodo.emit(this.todoSelected.id);
+      this.closeDialog();
+    }
+
+  }
+  filterTodoHandler($event: string): void {
+    this.filterTodo.emit($event);
   }
 
 }

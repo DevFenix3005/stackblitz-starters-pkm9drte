@@ -15,3 +15,7 @@ li.todo-item:hover {
     background-color: var(--pico-primary-hover);
     color: black;
 }
+
+span.tachado {
+    text-decoration: line-through;
+}

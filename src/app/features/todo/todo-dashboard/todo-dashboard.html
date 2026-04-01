@@ -1,4 +1,9 @@
 <div class="grid">
     <app-todo-form (addTodoHandler)="addTodoParent($event)" />
-    <app-todo-list [todos]="todos" />
+    <app-todo-list [todos]="(todos | todoFilter:filter)"
+    (deleteTodo)="deleteTodoParent($event)"
+    (filterTodo)="filterTodoParent($event)"
+    (toggleTodo)="toggleTodoParent($event)"
+    
+    />
 </div>

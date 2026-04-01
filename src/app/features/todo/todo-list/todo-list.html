@@ -1,17 +1,17 @@
 <article>
+  <div role="group">
+    <button (click)="filterTodoHandler('all')">All</button>
+    <button (click)="filterTodoHandler('complete')" class="secondary">Complete</button>
+    <button (click)="filterTodoHandler('pending')" class="contrast">Pending</button>
+  </div>
+  <hr />
   @if(todos.length <= 0){ <h2>Not todos in the list</h2>
     }
     @else{
-    <div role="group">
-      <button>All</button>
-      <button class="secondary">Complete</button>
-      <button class="contrast">Pending</button>
-    </div>
-    <hr />
     @for (item of todos; track item.id) {
     <ul>
       <li class="todo-item" (click)="changeStatus(item)">
-        <span>{{ item.title }}</span>
+        <span [ngClass]="{'tachado':item.completed}">{{ item.title }}</span>
       </li>
     </ul>
     }
@@ -31,8 +31,8 @@
       <button class="secondary" (click)="closeDialog()">
         Cancel
       </button>
-      <button>Deleted</button>
-      <button>{{ todoSelected.completed ? "Return Todo!" : "Done!" }}</button>
+      <button (click)="deleteTodoHandler()">Deleted</button>
+      <button (click)="toggleTodoHandler()">{{ todoSelected.completed ? "Return Todo!" : "Done!" }}</button>
     </footer>
   </article>
   }
