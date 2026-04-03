@@ -7,7 +7,22 @@ import { Todo } from '../../shared/todo';
   providedIn: 'root',
 })
 export class TodoMock {
-  private inMemoryData: Todo[] = [];
+  private inMemoryData: Todo[] = [{
+    id: 1,
+    title: "Do the laundry",
+    completed: false
+  },
+  {
+    id: 2,
+    title: "Walk the dog",
+    completed: false
+  },
+  {
+    id: 3,
+    title: "Go to the grocery store and buy milk",
+    completed: false
+  }
+  ];
 
   public getTodos(): Observable<Todo[]> {
     return of(this.inMemoryData);

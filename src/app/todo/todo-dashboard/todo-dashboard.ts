@@ -21,14 +21,13 @@ export class TodoDashboard implements OnInit {
 
   private getTodosFromService() {
     this.todoMock.getTodos().subscribe((todos) => {
-      this.todos = todos;
+      this.todos = [...todos];
     });
   }
 
   addTodoParent($emit: Todo) {
     this.todoMock.addTodo($emit).subscribe((newTodo) => {
-      console.log(newTodo);
-      this.getTodosFromService();
+      this.todos = [...this.todos, newTodo];
     });
   }
 }

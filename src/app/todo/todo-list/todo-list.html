@@ -1,21 +1,17 @@
 <article>
-  @if(todos.length <= 0){ <h2>Not todos in the list</h2>
+  @if(todos().length <= 0){ <h2>Not todos in the list</h2>
     }
     @else{
-    <div role="group">
-      <button>All</button>
-      <button class="secondary">Complete</button>
-      <button class="contrast">Pending</button>
-    </div>
+    <input type="text" [value]="textForFilter()" (keyup)="updateText($event)"/>
     <hr />
-    @for (item of todos; track item.id) {
+    @for (item of filteredTodos(); track item.id) {
     <ul>
       <li class="todo-item" (click)="changeStatus(item)">
         <span>{{ item.title }}</span>
       </li>
     </ul>
     }
-    <footer>{{ todos.length }} todos</footer>
+    <footer>{{ qtyOfTodoFiltered() }} todos</footer>
     }
 </article>
 
