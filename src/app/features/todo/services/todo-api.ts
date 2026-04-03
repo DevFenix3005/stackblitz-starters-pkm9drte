@@ -13,13 +13,9 @@ export class TodoApi {
   private databaseName: string = "todos"
 
   public getTodos(): Observable<Todo[]> {
-    return from(
-      supabase.from(this.databaseName).select("*").order("id", { ascending: true})
-    )
+    return from(supabase.from(this.databaseName).select("*").order("id", { ascending: true }))
       .pipe(map(response => {
-
         if (response.error) throw response.error;
-
         return response.data as Todo[];
       }))
   }

@@ -14,7 +14,7 @@ type TodoNullable = Todo | null;
   selector: 'app-todo-list',
   imports: [NgClass, ElapsedPipe],
   templateUrl: './todo-list.html',
-  styleUrl: './todo-list.css',
+  styleUrl: './todo-list.scss',
 })
 export class TodoList {
   public todos: InputSignal<Todo[]> = input.required<Todo[]>();
@@ -62,7 +62,6 @@ export class TodoList {
     }, animationDuration);
   }
 
-
   toggleTodoHandler(): void {
     if (this.todoSelected) {
       this.toggleTodo.emit(this.todoSelected.id);
@@ -74,12 +73,15 @@ export class TodoList {
       this.deleteTodo.emit(this.todoSelected.id);
       this.closeDialog();
     }
-
   }
-  filterTodoHandler($event: PointerEvent): void {
-    const button = $event.target as HTMLButtonElement;
-    const buttonValue = button.textContent.toLocaleLowerCase();
-    this.filter.set(buttonValue);
+
+  filterSelectTodoHandler($event: Event): void {
+    console.log($event)
+    
+    const select = $event.target as HTMLSelectElement;
+    const selectValue = select.value.toLocaleLowerCase();
+    console.log(selectValue);
+    this.filter.set(selectValue);
   }
 
 }

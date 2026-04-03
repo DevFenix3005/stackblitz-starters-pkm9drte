@@ -8,7 +8,7 @@ import { TodoFacade } from '../services/todo-facade';
   selector: 'app-todo-dashboard',
   imports: [TodoForm, TodoList],
   templateUrl: './todo-dashboard.html',
-  styleUrl: './todo-dashboard.css'
+  styleUrl: './todo-dashboard.scss'
 })
 export class TodoDashboard implements OnInit {
 

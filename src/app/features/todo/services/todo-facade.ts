@@ -21,17 +21,19 @@ export class TodoFacade {
   public loadTodos() {
     this.startAction();
 
-    this.api.getTodos().subscribe({
-      next: (value) => {
-        this.store.setTodos(value);
-      },
-      error: (err) => {
-        this.showError(err, 'Failed to load todos');
-      },
-      complete: () => {
-        this.store.setLoading(false);
-      }
-    });
+    setTimeout(() => {
+      this.api.getTodos().subscribe({
+        next: (value) => {
+          this.store.setTodos(value);
+        },
+        error: (err) => {
+          this.showError(err, 'Failed to load todos');
+        },
+        complete: () => {
+          this.store.setLoading(false);
+        }
+      });
+    }, 777);
 
   }
 

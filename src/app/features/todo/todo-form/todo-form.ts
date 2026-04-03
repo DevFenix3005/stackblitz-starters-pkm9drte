@@ -11,7 +11,7 @@ import { Todo } from '../../../shared/models/todo';
   selector: 'app-todo-form',
   imports: [ReactiveFormsModule],
   templateUrl: './todo-form.html',
-  styleUrl: './todo-form.css',
+  styleUrl: './todo-form.scss',
 })
 export class TodoForm {
   @Output()

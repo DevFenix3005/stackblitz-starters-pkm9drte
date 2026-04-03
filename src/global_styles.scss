@@ -1,0 +1,54 @@
+/* Add application styles & imports to this file! */
+@use "@picocss/pico/scss" with ( // 
+  //Theme color
+  $theme-color: "green",
+
+  // Define the root element used to target <header>, <main>, <footer>
+  // with $enable-semantic-container and $enable-responsive-spacings
+  $semantic-root-element: "app-root",
+
+  // Enable <header>, <main>, <footer> inside $semantic-root-element as containers
+  $enable-semantic-container: true,
+);
+
+html,
+body {
+  height: 100%;
+  /* Ensure full height for html and body */
+  margin: 0;
+}
+
+body>footer {
+  position: sticky;
+  top: 100vh;
+}
+
+.container {
+  padding: 10px;
+}
+
+/* You can add global styles to this file, and also import other style files */
+/* Overlay que “tapa” la app para hacer el fade */
+.theme-fade {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+
+  /* Usa tokens Material para que el overlay coincida con el tema */
+  background: var(--pico-background-color);
+
+  transition: opacity 160ms ease;
+  z-index: 9999;
+}
+
+.theme-fade.on {
+  opacity: 1;
+}
+
+/* Accesibilidad: si el usuario prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .theme-fade {
+    transition: none !important;
+  }
+}
