@@ -1,51 +1,38 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { TodoFilterPipe } from '../../../core/pipes/todo-filter-pipe';
+import { ChangeDetectionStrategy, Component, inject, OnInit, Signal } from '@angular/core';
 import { Todo } from '../../../shared/models/todo';
 import { TodoForm } from '../todo-form/todo-form';
 import { TodoList } from '../todo-list/todo-list';
-import { TodoMock } from '../services/todo-mock';
+import { TodoFacade } from '../services/todo-facade';
 
 @Component({
   selector: 'app-todo-dashboard',
-  imports: [TodoForm, TodoList, TodoFilterPipe],
+  imports: [TodoForm, TodoList],
   templateUrl: './todo-dashboard.html',
-  styleUrl: './todo-dashboard.css',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './todo-dashboard.css'
 })
 export class TodoDashboard implements OnInit {
 
-  protected todos: Todo[] = [];
-  private todoMock: TodoMock = inject(TodoMock);
-  protected filter: string = "all";
+  private todoFacade: TodoFacade = inject(TodoFacade);
+  protected todos: Signal<Todo[]> = this.todoFacade.todos;
+  protected loadingTodos: Signal<boolean> = this.todoFacade.loading;
 
   ngOnInit(): void {
     this.getTodosFromMock();
   }
 
   private getTodosFromMock() {
-    this.todoMock.getTodos().subscribe((todos) => {
-      this.todos = todos;
-    });
-  }
-
-  filterTodoParent($event: string) {
-    this.filter = $event;
+    this.todoFacade.loadTodos();
   }
 
   addTodoParent($emit: Todo) {
-    this.todoMock.addTodo($emit).subscribe((_) => {
-      this.getTodosFromMock();
-    });
+    this.todoFacade.addTodo($emit);
   }
 
   toggleTodoParent($event: number) {
-    this.todoMock.toggleTodo($event);
-    this.getTodosFromMock();
+    this.todoFacade.toggleTodo($event);
   }
 
-
   deleteTodoParent($event: number) {
-    this.todoMock.deleteTodo($event);
-    this.getTodosFromMock();
+    this.todoFacade.deleteTodo($event);
   }
 }

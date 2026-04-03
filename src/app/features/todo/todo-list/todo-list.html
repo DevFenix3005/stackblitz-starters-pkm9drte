@@ -1,32 +1,36 @@
-<article>
-  <div role="group">
-    <button (click)="filterTodoHandler('all')">All</button>
-    <button (click)="filterTodoHandler('complete')" class="secondary">Complete</button>
-    <button (click)="filterTodoHandler('pending')" class="contrast">Pending</button>
+<article [aria-busy]="loadingTodos()">
+  @if (!loadingTodos()) {
+  <div>
+    <div role="group">
+      <button (click)="filterTodoHandler($event)">All</button>
+      <button (click)="filterTodoHandler($event)" class="secondary">Complete</button>
+      <button (click)="filterTodoHandler($event)" class="contrast">Pending</button>
+    </div>
+    <hr />
+    @if(qtyOfTodos() <= 0) { <h2>Not todos in the list</h2>
+      }
+      @else{
+      @for (item of displayedTodos(); track item.id) {
+      <ul>
+        <li class="todo-item" (click)="changeStatus(item)">
+          <span [ngClass]="{'tachado':item.completed}">{{ item.title }}</span>
+        </li>
+      </ul>
+      }
+      <footer>{{ qtyOfTodos() }} todos</footer>
+      }
   </div>
-  <hr />
-  @if(todos.length <= 0){ <h2>Not todos in the list</h2>
-    }
-    @else{
-    @for (item of todos; track item.id) {
-    <ul>
-      <li class="todo-item" (click)="changeStatus(item)">
-        <span [ngClass]="{'tachado':item.completed}">{{ item.title }}</span>
-      </li>
-    </ul>
-    }
-    <footer>{{ todos.length }} todos</footer>
-    }
+  }
 </article>
 
 <dialog #dialog>
   @if(todoSelected){
   <article>
-    <h2>{{ todoSelected.title }}</h2>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur a libero id tellus luctus pellentesque.
-      Maecenas maximus, nunc sed vehicula.
-    </p>
+    <header>
+      <h2>{{ todoSelected.title }}</h2>
+      <small>{{ todoSelected.created_at | elapsed }}</small>
+    </header>
+    <p>{{ todoSelected.description }}</p>
     <footer>
       <button class="secondary" (click)="closeDialog()">
         Cancel

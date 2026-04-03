@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>My app</title>
-    <meta charset="UTF-8" />
-    <base href="/" />
-    <meta
-      property="og:image"
-      content="https://bolt.new/static/og_default.png"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://bolt.new/static/og_default.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    />
-  </head>
-  <body>
-    <header class="container">
-      <h2>&nbsp;Todo Dashboard🗒️</h2>
-    </header>
-    <main class="container">
-      <app-root>Loading...</app-root>
-    </main>
-    <footer class="container">
-        <small>&reg; Roberto D. Cazarin</small>
-    </footer>
-  </body>
+
+<head>
+  <title>My app</title>
+  <meta charset="UTF-8" />
+  <base href="/" />
+  <meta property="og:image" content="https://bolt.new/static/og_default.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://bolt.new/static/og_default.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.green.min.css">
+</head>
+
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>🗒️Todo Dashboard</strong></li>
+      </ul>
+      <ul>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Products</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <app-root>Loading...</app-root>
+  </main>
+  <footer class="container">
+    <small>&reg; Roberto D. Cazarin</small>
+  </footer>
+</body>
+
 </html>

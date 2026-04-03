@@ -22,6 +22,9 @@ export class TodoForm {
       '',
       Validators.compose([Validators.required, Validators.minLength(3)]),
     ],
+    description: ['',
+      Validators.max(150)
+    ]
   });
 
   addTodo(event: Event) {
