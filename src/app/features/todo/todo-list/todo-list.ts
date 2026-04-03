@@ -1,6 +1,7 @@
-import { Component, Input, ViewChild, ElementRef, inject, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject, Output, EventEmitter, input, InputSignal, computed, signal, WritableSignal } from '@angular/core';
 import { DOCUMENT, NgClass } from '@angular/common';
 import { Todo } from '../../../shared/models/todo';
+import { ElapsedPipe } from '../../../shared/pipes/elapsed-pipe';
 
 const isOpenClass = "modal-is-open";
 const openingClass = "modal-is-opening";
@@ -11,15 +12,30 @@ type TodoNullable = Todo | null;
 
 @Component({
   selector: 'app-todo-list',
-  imports: [NgClass],
+  imports: [NgClass, ElapsedPipe],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
 })
 export class TodoList {
-  @Input() todos!: Todo[];
+  public todos: InputSignal<Todo[]> = input.required<Todo[]>();
+  public loadingTodos: InputSignal<boolean> = input.required<boolean>();
+  private filter: WritableSignal<string> = signal<string>("all");
+  protected displayedTodos = computed(() => {
+    const listOfTodos = this.todos()
+    let _filter = this.filter();
+    if (_filter === "pending") {
+      return listOfTodos.filter(todo => !todo.completed);
+    }
+    else if (_filter === "complete") {
+      return listOfTodos.filter(todo => todo.completed);
+    } else {
+      return listOfTodos;
+    }
+  });
+  protected qtyOfTodos = computed(() => this.displayedTodos().length);
+
   @Output() toggleTodo: EventEmitter<number> = new EventEmitter();
   @Output() deleteTodo: EventEmitter<number> = new EventEmitter();
-  @Output() filterTodo: EventEmitter<string> = new EventEmitter();
 
   @ViewChild("dialog") dialog!: ElementRef<HTMLDialogElement>;
   private document: Document = inject(DOCUMENT);
@@ -60,8 +76,10 @@ export class TodoList {
     }
 
   }
-  filterTodoHandler($event: string): void {
-    this.filterTodo.emit($event);
+  filterTodoHandler($event: PointerEvent): void {
+    const button = $event.target as HTMLButtonElement;
+    const buttonValue = button.textContent.toLocaleLowerCase();
+    this.filter.set(buttonValue);
   }
 
 }
