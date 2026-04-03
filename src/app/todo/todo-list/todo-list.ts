@@ -21,25 +21,4 @@ export class TodoList {
   private document: Document = inject(DOCUMENT);
   protected todoSelected: TodoNullable = null;
 
-  changeStatus(todo: Todo): void {
-    const html = this.document.documentElement;
-
-    html.classList.add(isOpenClass, openingClass)
-    setTimeout(() => {
-      html.classList.remove(openingClass);
-    }, animationDuration);
-    this.todoSelected = todo;
-    this.dialog.nativeElement.showModal();
-  }
-
-  closeDialog() {
-    const html = this.document.documentElement;
-    html.classList.add(closingClass);
-    setTimeout(() => {
-      html.classList.remove(closingClass, isOpenClass);
-      this.dialog.nativeElement.close();
-      this.todoSelected = null;
-    }, animationDuration);
-  }
-
 }
